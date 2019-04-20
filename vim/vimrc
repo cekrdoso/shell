@@ -19,6 +19,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'scrooloose/nerdtree'
 
 " Color schemes
 Plugin 'flazz/vim-colorschemes'
@@ -41,4 +42,4 @@ filetype plugin indent on    " required
 set number
 set t_Co=256
 set pastetoggle=<F3>
-
+map <C-n> :NERDTreeToggle<CR>
