@@ -5,4 +5,5 @@ function nonzero_return() {
 }
 
 export PS1="\[\e[33m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[33m\]\h\[\e[m\] \w\[\e[36m\]\n\`nonzero_return\`$\[\e[m\]  "
+export EDITOR=vim
 ## END BASH SETUP ##
