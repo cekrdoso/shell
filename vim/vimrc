@@ -20,6 +20,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'yggdroot/indentline'
 
 " Color schemes
 Plugin 'flazz/vim-colorschemes'
@@ -43,3 +44,6 @@ set number
 set t_Co=256
 set pastetoggle=<F3>
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen=1
+let g:indentLine_enabled=1
+let g:indentLine_char_list='|'
