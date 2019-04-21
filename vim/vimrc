@@ -43,7 +43,14 @@ filetype plugin indent on    " required
 set number
 set t_Co=256
 set pastetoggle=<F3>
+
+" Nerdtree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
+
+" Indent
+set expandtab
+set shiftwidth=4
+set softtabstop=4
 let g:indentLine_enabled=1
 let g:indentLine_char_list='|'
