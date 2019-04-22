@@ -1,9 +1,15 @@
 ## BASH SETUP ##
-function nonzero_return() {
+function last_exitcode() {
         RETVAL=$?
-        [ $RETVAL -ne 0 ] && echo "$RETVAL "
+        [ $RETVAL -eq 0 ] && printf "\e[38;5;15m${RETVAL}\e[0m " || \
+        	printf "\e[38;5;9m${RETVAL}\e[0m "
 }
 
-export PS1="\[\e[33m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[33m\]\h\[\e[m\] \w\[\e[36m\]\n\`nonzero_return\`$\[\e[m\]  "
+if [ $(id -u) -eq 0 ];
+then
+	export PS1="\[\e[38;5;4m\]\u@\h\[\e[0m\] \[\e[38;5;15m\]\w\[\e[0m\]\n\`last_exitcode\`\[\e[38;5;11m\]$\[\e[0m\]  "
+else
+	export PS1="\[\e[38;5;14m\]\u@\h\[\e[0m\] \[\e[38;5;15m\]\w\[\e[0m\]\n\`last_exitcode\`\[\e[38;5;11m\]$\[\e[0m\]  "
+fi
 export EDITOR=vim
 ## END BASH SETUP ##
