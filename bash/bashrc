@@ -1,15 +1,23 @@
 ## BASH SETUP ##
-function last_exitcode() {
-        RETVAL=$?
-        [ $RETVAL -eq 0 ] && printf "\e[38;5;15m${RETVAL}\e[0m " || \
-        	printf "\e[38;5;9m${RETVAL}\e[0m "
-}
+function __prompt_command() {
+    local RETVAL=$?
+    PS1=""
 
-if [ $(id -u) -eq 0 ];
-then
-	export PS1="\[\e[38;5;4m\]\u@\h\[\e[0m\] \[\e[38;5;15m\]\w\[\e[0m\]\n\`last_exitcode\`\[\e[38;5;11m\]$\[\e[0m\]  "
-else
-	export PS1="\[\e[38;5;14m\]\u@\h\[\e[0m\] \[\e[38;5;15m\]\w\[\e[0m\]\n\`last_exitcode\`\[\e[38;5;11m\]$\[\e[0m\]  "
-fi
+    local RCol='\[\e[0m\]'
+    local White='\[\e[38;5;15m\]'
+    local Red='\[\e[38;5;9m\]'
+
+    if [ $(id -u) -eq 0 ]; then
+        PS1="\[\e[38;5;4m\]\u@\h\[\e[0m\] \[\e[38;5;15m\]\w\[\e[0m\]\n"
+    else
+        PS1="\[\e[38;5;14m\]\u@\h\[\e[0m\] \[\e[38;5;15m\]\w\[\e[0m\]\n"
+    fi
+
+    [ $RETVAL -eq 0 ] && PS1+="${White}${RETVAL}${RCol}" || PS1+="${Red}${RETVAL}${RCol}"
+
+    PS1+=" \[\e[38;5;11m\]\$\[\e[0m\]  "
+}
+export PROMPT_COMMAND=__prompt_command
+
 export EDITOR=vim
 ## END BASH SETUP ##
