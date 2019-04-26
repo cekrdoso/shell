@@ -44,6 +44,9 @@ set number
 set t_Co=256
 set pastetoggle=<F3>
 
+" Toggle decorations
+map <F4> :set invnumber<CR>:IndentLinesToggle<CR>
+
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
