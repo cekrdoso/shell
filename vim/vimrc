@@ -56,4 +56,11 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 let g:indentLine_enabled=1
-let g:indentLine_char_list='|'
+let g:indentLine_char_list=['|', '¦', '┆', '┊']
+"let g:indentLine_char_list='|'
+
+" Colorscheme
+colorscheme molokai_dark
+
+" Show json quotes
+autocmd Filetype json let g:indentLine_setConceal = 0
