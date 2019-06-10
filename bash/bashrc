@@ -8,7 +8,10 @@ function __prompt_command() {
     local DarkGray='\[\e[38;5;8m\]'
     local Pink='\[\e[38;5;13m\]'
 
-    PS1="${DarkGray}\u@\h${RCol} ${White}\w${RCol}\n"
+    PS1="${DarkGray}\u@\h${RCol} ${White}\w${RCol}"
+    [ -n "${DOCKER_PROD_CONTEXT}" ] && PS1+=" ${White}(docker:${Red}production${White})${RCol}"
+    [ -n "${DOCKER_DEV_CONTEXT}" ] && PS1+=" ${White}(docker:${Pink}development${White})${RCol}"
+    PS1+="\n"
 
     [ $RETVAL -eq 0 ] && PS1+="${White}${RETVAL}${RCol} " || PS1+="${Red}${RETVAL}${RCol} "
 
