@@ -5,14 +5,27 @@ function __prompt_command() {
     local RCol='\[\e[0m\]'
     local White='\[\e[38;5;15m\]'
     local Red='\[\e[38;5;9m\]'
+    local Blue='\[\e[34;5;9m\]'
     local DarkGray='\[\e[38;5;8m\]'
     local Pink='\[\e[38;5;13m\]'
 
     PS1="${DarkGray}\u@\h${RCol} ${White}\w${RCol}"
+
+    # Docker Context
     [ -n "${DOCKER_PROD_CONTEXT}" ] && PS1+=" ${White}(docker:${Red}production${White})${RCol}"
     [ -n "${DOCKER_DEV_CONTEXT}" ] && PS1+=" ${White}(docker:${Pink}development${White})${RCol}"
+
+    # Git Branch
+    GIT_BRANCH=`__git_ps1`
+    if [ -n "${GIT_BRANCH}" ]; then
+        GIT_BRANCH=${GIT_BRANCH:2:-1}
+        [ ${GIT_BRANCH} == "master" ] && PS1+=" ${White}(git:${Red}${GIT_BRANCH}${White})${RCol}" || \
+            PS1+=" ${White}(git:${Blue}${GIT_BRANCH}${White})${RCol}"
+    fi
+
     PS1+="\n"
 
+    # Last Exit Code
     [ $RETVAL -eq 0 ] && PS1+="${White}${RETVAL}${RCol} " || PS1+="${Red}${RETVAL}${RCol} "
 
     PS1+="${Pink}\$${RCol}  "
