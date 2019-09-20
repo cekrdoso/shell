@@ -6,7 +6,7 @@ function __prompt_command() {
     local White='\[\e[38;5;15m\]'
     local Red='\[\e[38;5;9m\]'
     local Blue='\[\e[34;5;9m\]'
-    local DarkGray='\[\e[38;5;8m\]'
+    local DarkGray='\[\e[38;5;245m\]'
     local Pink='\[\e[38;5;13m\]'
 
     PS1="${DarkGray}\u@\h${RCol} ${White}\w${RCol}"
